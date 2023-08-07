@@ -6,9 +6,10 @@ defineProps({
 </script>
 
 <template>
-    <div>Hello!</div>
     <div v-for="listing in listings" :key="listing.id">
-        {{ listing.street }}, {{ listing.street_nr }}, {{ listing.city }}, for
-        ${{ listing.price }}
+        <Link :href="`/listing/${listing.id}`">
+            {{ listing.street }}, {{ listing.street_nr }}, {{ listing.city }},
+            for ${{ listing.price }}
+        </Link>
     </div>
 </template>
