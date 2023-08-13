@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="submit">
         <div>
             <div>
                 <label>Beds</label>
@@ -24,12 +24,12 @@
 
             <div>
                 <label>Post Code</label>
-                <input type="text" v.model="form.code" />
+                <input type="text" v-model="form.code" />
             </div>
 
             <div>
                 <label>Street</label>
-                <input type="text" v.model="form.street" />
+                <input type="text" v-model="form.street" />
             </div>
 
             <div>
@@ -60,10 +60,9 @@ div {
 </style>
 
 <script setup>
-import { reactive } from "vue";
-import { Inertia } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
-const form = reactive({
+const form = useForm({
     beds: 0,
     baths: 0,
     area: 0,
@@ -73,4 +72,8 @@ const form = reactive({
     street_nr: 0,
     price: 0,
 });
+
+function submit() {
+    form.post("/listing");
+}
 </script>
